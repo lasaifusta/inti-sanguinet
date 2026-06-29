@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inti Sanguinet · Mentor de Poder Personal y Sabiduría de la Tierra</title>
+<meta name="description" content="Inti Sanguinet — mentor de poder personal y sabiduría de la tierra. Creador del Templo del Refinamiento y fundador de la Escuela Ser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --selva:    #1d2a20;   /* verde selva profundo (fondo oscuro / texto) */
+    --selva-2:  #243528;
+    --musgo:    #3f5742;   /* verde musgo */
+    --salvia:   #8aa183;   /* verde salvia */
+    --tierra:   #7c5236;   /* marrón tierra */
+    --arcilla:  #b07a4d;   /* terracota cálida */
+    --sol:      #d9a441;   /* oro sol (Inti) */
+    --sol-claro:#e7c074;
+    --arena:    #f2eae0;   /* arena cálida (fondo claro) */
+    --crema:    #fbf7f0;
+    --linea:    rgba(29,42,32,0.14);
+    --linea-cl: rgba(242,234,224,0.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Jost',sans-serif;color:var(--selva);line-height:1.6;background:var(--arena)}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  .serif{font-family:'Cormorant Garamond',serif}
+
+  /* Topbar */
+  header.top{position:sticky;top:0;z-index:50;background:rgba(29,42,32,0.92);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--linea-cl)}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:11px;color:var(--crema)}
+  .brand .mark{width:30px;height:30px;flex:none}
+  .brand .mark svg{width:100%;height:100%}
+  .brand .nm{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.32rem;letter-spacing:.5px;line-height:1}
+  .brand .nm small{display:block;font-family:'Jost';font-weight:300;font-size:.62rem;letter-spacing:3px;
+    text-transform:uppercase;color:var(--salvia);margin-top:3px}
+  nav.menu{display:flex;align-items:center;gap:28px}
+  nav.menu a{color:var(--arena);font-size:.93rem;font-weight:300;transition:color .2s}
+  nav.menu a:hover{color:var(--sol-claro)}
+  nav.menu a.cta{padding:9px 18px;border:1px solid var(--sol);border-radius:40px;color:var(--sol-claro)}
+  nav.menu a.cta:hover{background:var(--sol);color:var(--selva)}
+  .burger{display:none}
+
+  /* Hero */
+  .hero{position:relative;color:var(--crema);overflow:hidden;
+    background:
+      radial-gradient(circle at 78% 18%, rgba(217,164,65,0.30), transparent 42%),
+      radial-gradient(circle at 12% 92%, rgba(124,82,54,0.45), transparent 50%),
+      linear-gradient(160deg,#1a2620 0%,#21301f 45%,#2c3a26 100%)}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;
+    padding:84px 24px 92px}
+  .hero .k{display:inline-block;font-size:.72rem;letter-spacing:4px;text-transform:uppercase;
+    color:var(--sol-claro);border:1px solid var(--linea-cl);border-radius:40px;padding:7px 16px;margin-bottom:24px}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:3.5rem;line-height:1.04;letter-spacing:.5px}
+  .hero h1 em{font-style:italic;color:var(--sol-claro)}
+  .hero .lead{font-weight:300;font-size:1.12rem;color:rgba(242,234,224,0.82);margin-top:22px;max-width:46ch}
+  .hero .acts{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:44px;
+    font-weight:500;font-size:.97rem;cursor:pointer;transition:transform .25s,filter .25s,background .25s,color .25s;font-family:'Jost'}
+  .btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .btn.sol{background:linear-gradient(135deg,var(--sol),var(--arcilla));color:var(--selva);border:none}
+  .btn.sol:hover{transform:translateY(-2px);filter:brightness(1.06)}
+  .btn.ghost{background:transparent;color:var(--arena);border:1px solid var(--linea-cl)}
+  .btn.ghost:hover{background:rgba(242,234,224,0.08);transform:translateY(-2px)}
+
+  /* Retrato (placeholder de marca, sin foto rota) */
+  .portrait{position:relative;aspect-ratio:4/5;border-radius:140px 140px 26px 26px;overflow:hidden;
+    border:1px solid var(--linea-cl);
+    background:
+      radial-gradient(circle at 50% 30%, rgba(231,192,116,0.55), transparent 55%),
+      linear-gradient(180deg,#33472f,#1f2c1d 75%)}
+  .portrait .pic{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+  .portrait .sun{position:absolute;top:42px;left:50%;transform:translateX(-50%);width:96px;height:96px;opacity:.92}
+  .portrait .canopy{position:absolute;inset:0}
+  .portrait .ph-note{position:absolute;left:0;right:0;bottom:18px;text-align:center;
+    font-size:.74rem;letter-spacing:2px;text-transform:uppercase;color:rgba(242,234,224,0.55)}
+
+  /* Tira de prueba social */
+  .proof{background:var(--selva);color:var(--crema)}
+  .proof .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:18px 56px;padding:26px 24px;text-align:center}
+  .proof .it{display:flex;flex-direction:column}
+  .proof .n{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--sol-claro);line-height:1}
+  .proof .l{font-size:.72rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--salvia);margin-top:6px}
+
+  /* Secciones claras */
+  section.block{padding:88px 0}
+  .eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--arcilla);text-align:center}
+  .h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:2.5rem;text-align:center;
+    margin-top:12px;line-height:1.12}
+  .sub{text-align:center;max-width:60ch;margin:18px auto 0;color:rgba(29,42,32,0.72);font-weight:300}
+
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:54px}
+  .pillar{background:var(--crema);border:1px solid var(--linea);border-radius:22px;padding:34px 28px;
+    transition:transform .25s,box-shadow .25s}
+  .pillar:hover{transform:translateY(-4px);box-shadow:0 22px 50px rgba(29,42,32,0.12)}
+  .pillar .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;
+    background:linear-gradient(135deg,rgba(217,164,65,0.18),rgba(124,82,54,0.16));margin-bottom:20px}
+  .pillar .ic svg{width:26px;height:26px;stroke:var(--tierra);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+  .pillar h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:10px}
+  .pillar p{color:rgba(29,42,32,0.7);font-weight:300;font-size:.96rem}
+
+  /* Bloque escuela (oscuro) */
+  .school{background:
+      radial-gradient(circle at 85% 12%, rgba(217,164,65,0.22), transparent 45%),
+      linear-gradient(160deg,#202e1f,#2a3a24)}
+  .school .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center;padding:88px 24px}
+  .school .art{aspect-ratio:1/1;border-radius:24px;border:1px solid var(--linea-cl);position:relative;overflow:hidden;
+    background:radial-gradient(circle at 50% 38%, rgba(231,192,116,0.4), transparent 60%),linear-gradient(180deg,#2f4029,#1d291a)}
+  .school .art svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54%;height:54%;opacity:.9}
+  .school .art .pic{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+  .school .txt{color:var(--crema)}
+  .school .eyebrow{text-align:left;color:var(--sol-claro)}
+  .school h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:2.5rem;margin:12px 0 16px;line-height:1.1}
+  .school p{color:rgba(242,234,224,0.82);font-weight:300;margin-bottom:14px}
+  .school .acts{margin-top:26px}
+
+  /* Newsletter */
+  .news{background:var(--crema)}
+  .news .wrap{max-width:640px;text-align:center;padding:84px 24px}
+  .news h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:2.3rem;line-height:1.12}
+  .news p{color:rgba(29,42,32,0.72);font-weight:300;margin-top:14px}
+  .form{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;justify-content:center}
+  .form input{flex:1;min-width:220px;padding:15px 18px;border-radius:44px;border:1px solid var(--linea);
+    background:var(--arena);font-family:'Jost';font-size:.96rem;color:var(--selva)}
+  .form input:focus{outline:none;border-color:var(--arcilla)}
+  .news small{display:block;margin-top:14px;color:rgba(29,42,32,0.5);font-size:.8rem}
+
+  /* Footer */
+  footer.foot{background:var(--selva);color:rgba(242,234,224,0.7)}
+  footer.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:22px;padding:44px 24px}
+  .redes{display:flex;gap:12px}
+  .red{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(242,234,224,0.06);
+    border:1px solid var(--linea-cl);color:var(--arena);transition:transform .25s,background .25s,color .25s}
+  .red:hover{transform:translateY(-3px);background:var(--sol);color:var(--selva)}
+  .red svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .foot .nm{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--crema)}
+  .foot .nm small{display:block;font-family:'Jost';font-size:.72rem;letter-spacing:2px;color:var(--salvia);margin-top:4px}
+
+  @media(max-width:820px){
+    nav.menu{display:none}
+    .hero .wrap{grid-template-columns:1fr;padding:60px 24px 70px}
+    .hero h1{font-size:2.7rem}
+    .portrait{max-width:340px;margin:8px auto 0}
+    .pillars{grid-template-columns:1fr}
+    .school .wrap{grid-template-columns:1fr;padding:64px 24px}
+    .school .art{max-width:360px;margin:0 auto}
+    .h2,.school h2{font-size:2.1rem}
+  }
+
+  /* ---------- MOTION ---------- */
+  .scrollbar{position:fixed;top:0;left:0;height:3px;width:100%;z-index:60;
+    background:linear-gradient(90deg,var(--arcilla),var(--sol));
+    transform:scaleX(0);transform-origin:0 50%;transition:transform .1s linear}
+  .reveal{opacity:0;transform:translateY(28px);
+    transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);
+    transition-delay:var(--rd,0ms);will-change:opacity,transform}
+  .reveal.r-l{transform:translateX(-32px)}
+  .reveal.r-r{transform:translateX(32px)}
+  .reveal.r-s{transform:scale(.94)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1!important;transform:none!important;transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="scrollbar" id="scrollbar" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="8.5" fill="none" stroke="#d9a441" stroke-width="1.6"/>
+          <g stroke="#d9a441" stroke-width="1.6" stroke-linecap="round">
+          <line x1="20" y1="3" x2="20" y2="9"/><line x1="20" y1="31" x2="20" y2="37"/>
+          <line x1="3" y1="20" x2="9" y2="20"/><line x1="31" y1="20" x2="37" y2="20"/>
+          <line x1="8" y1="8" x2="12" y2="12"/><line x1="28" y1="28" x2="32" y2="32"/>
+          <line x1="32" y1="8" x2="28" y2="12"/><line x1="12" y1="28" x2="8" y2="32"/></g></svg>
+      </span>
+      <span class="nm">Inti Sanguinet<small>Poder personal</small></span>
+    </a>
+    <nav class="menu">
+      <a href="index.html">Inicio</a>
+      <a href="escuela.html">La Escuela</a>
+      <a href="#contacto">Contacto</a>
+      <a class="cta" href="escuela.html">Entrar al Templo</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="k">Mentor · Sabiduría de la Tierra</span>
+      <h1>Recupera tu <em>poder personal</em> y vuelve a la sabiduría de la tierra.</h1>
+      <p class="lead">Acompaño a personas que sienten que están hechas para algo más profundo: un camino de refinamiento interior para vivir con presencia, fuerza y verdad.</p>
+      <div class="acts">
+        <a class="btn sol" href="escuela.html">Conoce la Escuela
+          <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+        <a class="btn ghost" href="#camino">Qué propongo</a>
+      </div>
+    </div>
+    <div class="portrait" role="img" aria-label="Retrato de Inti Sanguinet en la naturaleza">
+      <img class="pic" src="images/inti-perfil.jpg" alt="Inti Sanguinet" onerror="this.style.display='none'">
+      <svg class="sun" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="20" fill="none" stroke="#e7c074" stroke-width="2"/>
+        <g stroke="#e7c074" stroke-width="2" stroke-linecap="round">
+          <line x1="50" y1="8" x2="50" y2="20"/><line x1="50" y1="80" x2="50" y2="92"/>
+          <line x1="8" y1="50" x2="20" y2="50"/><line x1="80" y1="50" x2="92" y2="50"/>
+          <line x1="20" y1="20" x2="29" y2="29"/><line x1="71" y1="71" x2="80" y2="80"/>
+          <line x1="80" y1="20" x2="71" y2="29"/><line x1="29" y1="71" x2="20" y2="80"/></g>
+      </svg>
+      <span class="ph-note">Foto real de Inti</span>
+    </div>
+  </div>
+</section>
+
+<div class="proof">
+  <div class="wrap">
+    <div class="it"><span class="n">+101 mil</span><span class="l">Comunidad</span></div>
+    <div class="it"><span class="n">+1.500</span><span class="l">Publicaciones</span></div>
+    <div class="it"><span class="n">Escuela Ser</span><span class="l">Formación viva</span></div>
+    <div class="it"><span class="n">El Templo</span><span class="l">Del Refinamiento</span></div>
+  </div>
+</div>
+
+<section class="block" id="camino">
+  <div class="wrap">
+    <p class="eyebrow">El camino que propongo</p>
+    <h2 class="h2">Tres raíces de un mismo trabajo</h2>
+    <p class="sub">No es motivación pasajera. Es un trabajo de fondo para reencontrarte con tu fuerza, tu calma y tu manera de estar en el mundo.</p>
+    <div class="pillars">
+      <article class="pillar">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.4 5 5.6.7-4 4 1 5.6L12 20l-5 2.3 1-5.6-4-4 5.6-.7z"/></svg></span>
+        <h3>Poder personal</h3>
+        <p>Dejar de vivir desde el miedo y la reacción para sostenerte en tu centro: decidir, poner límites y actuar desde tu verdad.</p>
+      </article>
+      <article class="pillar">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21c5-2.5 8-6.5 8-11a8 8 0 0 0-16 0c0 4.5 3 8.5 8 11z"/><path d="M12 21V9"/><path d="M12 12c-2-1-3-2.6-3-4"/><path d="M12 14c2-1 3-2.6 3-4.4"/></svg></span>
+        <h3>Sabiduría de la tierra</h3>
+        <p>Recuperar el ritmo natural, el cuerpo y los ciclos. Volver a una raíz que la vida moderna nos hizo olvidar.</p>
+      </article>
+      <article class="pillar">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/><path d="M3 21h18"/></svg></span>
+        <h3>Refinamiento</h3>
+        <p>El Templo del Refinamiento: pulir el carácter, los hábitos y la presencia hasta que tu vida se vuelva una obra cuidada.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="school" id="escuela">
+  <div class="wrap">
+    <div class="art" role="img" aria-label="Inti Sanguinet en la naturaleza">
+      <img class="pic" src="images/inti-post-1.jpg" alt="Naturaleza" onerror="this.style.display='none'">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="46" r="22" fill="none" stroke="#e7c074" stroke-width="1.8"/>
+        <path d="M50 26v40" stroke="#e7c074" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M50 50c-7-3-11-9-11-16" fill="none" stroke="#8aa183" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M50 56c7-3 11-9 11-17" fill="none" stroke="#8aa183" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M30 80h40" stroke="#e7c074" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="txt">
+      <p class="eyebrow">La Escuela Ser</p>
+      <h2>Un espacio para hacer el trabajo de verdad, acompañado.</h2>
+      <p>La Escuela Ser es la formación viva donde llevo todo esto a la práctica: prácticas, comunidad y acompañamiento para sostener el cambio en el tiempo, no en un fin de semana.</p>
+      <p>Si Instagram es la chispa, la Escuela es el fuego sostenido.</p>
+      <div class="acts">
+        <a class="btn sol" href="escuela.html">Quiero conocer la Escuela
+          <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="news" id="contacto">
+  <div class="wrap">
+    <h2>Recibe la práctica de cada semana</h2>
+    <p>Una carta sencilla con una idea y una práctica para volver a tu centro. Sin ruido, directo a tu correo.</p>
+    <form class="form" onsubmit="return false">
+      <input type="text" placeholder="Tu nombre" aria-label="Tu nombre">
+      <input type="email" placeholder="Tu correo" aria-label="Tu correo">
+      <button class="btn sol" type="submit">Quiero recibirla</button>
+    </form>
+    <small>Te escribo yo, no un robot. Te das de baja cuando quieras.</small>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="nm">Inti Sanguinet<small>Poder personal · Sabiduría de la tierra</small></div>
+    <div class="redes">
+      <a class="red" href="https://www.instagram.com/inti.sanguinet/" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a class="red" href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg></a>
+      <a class="red" href="#contacto" aria-label="Correo"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var bar = document.getElementById("scrollbar");
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? h.scrollTop / max : 0;
+    if(bar) bar.style.transform = "scaleX(" + p + ")";
+  }
+  document.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  if(reduce) return;
+
+  var revSel = ".hero .k,.hero h1,.hero .lead,.hero .acts,.portrait,.proof .it,.eyebrow,.h2,.sub,.pillar,.school .art,.school .txt h2,.school .txt p,.school .txt .acts,.news h2,.news p,.form";
+  document.querySelectorAll(revSel).forEach(function(el){ el.classList.add("reveal"); });
+  document.querySelectorAll(".portrait").forEach(function(el){ el.classList.add("r-r"); });
+  document.querySelectorAll(".school .art").forEach(function(el){ el.classList.add("r-l"); });
+  document.querySelectorAll(".pillar").forEach(function(el){ el.classList.add("r-s"); });
+
+  document.querySelectorAll(".pillars,.proof .wrap").forEach(function(grid){
+    Array.prototype.forEach.call(grid.children, function(c,i){ c.style.setProperty("--rd", (i*80)+"ms"); });
+  });
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, {threshold:.12, rootMargin:"0px 0px -7% 0px"});
+  document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+</body>
+</html>

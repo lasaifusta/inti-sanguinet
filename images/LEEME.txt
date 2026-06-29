@@ -1,0 +1,14 @@
+Fotos reales de Inti Sanguinet (descargadas de su Instagram, ya logueado).
+Arrastra aquí estos 4 archivos desde tu carpeta de Descargas:
+
+  inti-perfil.jpg   -> hero de index.html (retrato en la selva)
+  inti-post-1.jpg   -> bloque "La Escuela Ser" de index.html (naturaleza)
+  inti-post-2.jpg   -> (reserva / opcional)
+  inti-post-3.jpg   -> banda de escuela.html (ecosistemas)
+
+El HTML ya los referencia por ruta relativa (images/...) con respaldo a degradado
+de marca si falta alguno, así que nada se rompe si aún no están.
+
+Antes de enviar al cliente: pasar el HTML por _recursos/incrustar-imagenes.bat
+para generar el -OFFLINE autocontenido. Al publicar en GitHub, el publicador
+incrusta estas imagenes automaticamente.
